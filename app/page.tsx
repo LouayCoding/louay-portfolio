@@ -6,6 +6,7 @@ import VideoBackground from '@/components/VideoBackground';
 import AudioToggle from '@/components/AudioToggle';
 import EnterScreen from '@/components/EnterScreen';
 import CinematicText from '@/components/CinematicText';
+import AmbilightEffect from '@/components/AmbilightEffect';
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -47,6 +48,11 @@ export default function Home() {
       
       {/* Video Background */}
       <VideoBackground src="/space-background.mp4" startTime={0} />
+      
+      {/* Ambilight Effect */}
+      {hasEntered && (
+        <AmbilightEffect videoRef={(typeof window !== 'undefined' && (window as any).backgroundVideoRef) || videoRef} />
+      )}
       
       {/* Audio Toggle Button */}
       {hasEntered && (
