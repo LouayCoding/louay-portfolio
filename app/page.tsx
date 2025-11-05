@@ -172,13 +172,6 @@ export default function Home() {
         </div>
       )}
       
-      {/* Vignette effect - Light theme */}
-      <div
-        className="fixed inset-0 pointer-events-none z-0"
-        style={{
-          background: 'radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.3) 100%)',
-        }}
-      />
     </main>
   );
 }

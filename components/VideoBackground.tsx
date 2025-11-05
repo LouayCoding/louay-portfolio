@@ -71,9 +71,6 @@ export default function VideoBackground({ src, startTime = 0 }: VideoBackgroundP
         style={{
           width: '95%',
           height: '95%',
-          animation: 'cinematicFadeIn 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards',
-          opacity: 0,
-          filter: 'blur(10px)',
         }}
       >
         <video
@@ -82,9 +79,6 @@ export default function VideoBackground({ src, startTime = 0 }: VideoBackgroundP
           playsInline
           preload="auto"
           className="w-full h-full object-cover rounded-lg"
-          style={{
-            opacity: 0.8,
-          }}
         >
           <source src={videoSrc} type="video/mp4" />
         </video>
