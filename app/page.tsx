@@ -20,7 +20,7 @@ export default function Home() {
       const video = (window as any).backgroundVideoRef.current;
       video.muted = false;
       video.currentTime = 199;
-      video.play().catch(err => console.log('Play error:', err));
+      video.play().catch((err: unknown) => console.log('Play error:', err));
     }
     
     // Trigger shake animations at specific times (No! No! No!)
