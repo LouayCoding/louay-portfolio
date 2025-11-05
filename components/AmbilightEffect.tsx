@@ -119,14 +119,14 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
 
     // Boost saturation slightly for more vibrant effect
     const max = Math.max(r, g, b);
-    const boost = 1.2;
+    const boost = 1.1;
     if (max > 0) {
       r = Math.min(255, Math.floor(r * boost));
       g = Math.min(255, Math.floor(g * boost));
       b = Math.min(255, Math.floor(b * boost));
     }
 
-    return `rgba(${r}, ${g}, ${b}, 0.7)`;
+    return `rgba(${r}, ${g}, ${b}, 0.4)`;
   };
 
   return (
@@ -141,7 +141,7 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
           className="absolute left-0 top-0 bottom-0 w-48 md:w-64 transition-all duration-500 ease-out"
           style={{
             background: `linear-gradient(to right, ${colors.left}, transparent)`,
-            opacity: 0.9,
+            opacity: 0.5,
             filter: 'blur(80px)',
           }}
         />
@@ -151,7 +151,7 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
           className="absolute right-0 top-0 bottom-0 w-48 md:w-64 transition-all duration-500 ease-out"
           style={{
             background: `linear-gradient(to left, ${colors.right}, transparent)`,
-            opacity: 0.9,
+            opacity: 0.5,
             filter: 'blur(80px)',
           }}
         />
@@ -161,7 +161,7 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
           className="absolute top-0 left-0 right-0 h-32 md:h-40 transition-all duration-500 ease-out"
           style={{
             background: `linear-gradient(to bottom, ${colors.top}, transparent)`,
-            opacity: 0.9,
+            opacity: 0.5,
             filter: 'blur(80px)',
           }}
         />
@@ -171,7 +171,7 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
           className="absolute bottom-0 left-0 right-0 h-32 md:h-40 transition-all duration-500 ease-out"
           style={{
             background: `linear-gradient(to top, ${colors.bottom}, transparent)`,
-            opacity: 0.9,
+            opacity: 0.5,
             filter: 'blur(80px)',
           }}
         />
