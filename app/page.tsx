@@ -53,6 +53,28 @@ export default function Home() {
         <AudioToggle videoRef={(typeof window !== 'undefined' && (window as any).backgroundVideoRef) || videoRef} />
       )}
       
+      {/* Name - OUTSIDE VIDEO - Top of page */}
+      {hasEntered && (
+        <div 
+          className="fixed top-6 md:top-8 left-0 right-0 flex justify-center z-20 pointer-events-auto"
+          style={{
+            animation: 'fadeInUp 1s ease-out 4.5s both',
+          }}
+        >
+          <h1 
+            className="text-2xl md:text-4xl font-bold"
+            style={{
+              fontFamily: 'var(--font-sofia-pro)',
+              fontWeight: 700,
+              color: '#000000',
+              letterSpacing: '0.12em',
+            }}
+          >
+            LOUAY
+          </h1>
+        </div>
+      )}
+      
       {/* Main Content - Cinematic Layout - INSIDE VIDEO */}
       {hasEntered && (
         <div ref={contentRef} className="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
@@ -69,26 +91,6 @@ export default function Home() {
               <CinematicText text="No!" delay={12.5} size="large" style="bold" />
               <CinematicText text="It was you." delay={33.5} size="large" />
               <CinematicText text="You were my ghost." delay={46.5} size="medium" />
-            </div>
-            
-            {/* Top Center - Name */}
-            <div 
-              className="absolute top-6 md:top-12 left-0 right-0 flex justify-center pointer-events-auto"
-              style={{
-                animation: 'fadeInUp 1s ease-out 4.5s both',
-              }}
-            >
-              <h1 
-                className="text-2xl md:text-4xl font-bold"
-                style={{
-                  fontFamily: 'var(--font-sofia-pro)',
-                  fontWeight: 700,
-                  color: '#ffffff',
-                  letterSpacing: '0.12em',
-                }}
-              >
-                LOUAY
-              </h1>
             </div>
 
             {/* Bottom Left - CTA */}
@@ -170,11 +172,11 @@ export default function Home() {
         </div>
       )}
       
-      {/* Vignette effect */}
+      {/* Vignette effect - Light theme */}
       <div
         className="fixed inset-0 pointer-events-none z-0"
         style={{
-          background: 'radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.7) 100%)',
+          background: 'radial-gradient(circle at center, transparent 0%, rgba(255,255,255,0.3) 100%)',
         }}
       />
     </main>

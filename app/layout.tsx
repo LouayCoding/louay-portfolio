@@ -45,6 +45,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        {/* Safari browser bar color */}
+        <meta name="theme-color" content="#ffffff" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="msapplication-navbutton-color" content="#ffffff" />
+      </head>
       <body
         className={`${sofiaPro.variable} antialiased`}
       >
