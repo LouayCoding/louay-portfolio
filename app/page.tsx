@@ -5,9 +5,11 @@ import { AnimatePresence } from 'framer-motion';
 import VideoBackground from '@/components/VideoBackground';
 import AudioToggle from '@/components/AudioToggle';
 import EnterScreen from '@/components/EnterScreen';
+import CinematicText from '@/components/CinematicText';
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const [hasEntered, setHasEntered] = useState(false);
   
   const handleEnter = () => {
@@ -20,6 +22,20 @@ export default function Home() {
       video.currentTime = 199;
       video.play().catch(err => console.log('Play error:', err));
     }
+    
+    // Trigger shake animations at specific times (No! No! No!)
+    setTimeout(() => triggerShake(), 10500); // First No!
+    setTimeout(() => triggerShake(), 11500); // Second No!
+    setTimeout(() => triggerShake(), 12500); // Third No!
+  };
+  
+  const triggerShake = () => {
+    if (contentRef.current) {
+      contentRef.current.classList.add('shake-screen');
+      setTimeout(() => {
+        contentRef.current?.classList.remove('shake-screen');
+      }, 500);
+    }
   };
   
   return (
@@ -30,7 +46,7 @@ export default function Home() {
       </AnimatePresence>
       
       {/* Video Background */}
-      <VideoBackground src="/space-background.webm" startTime={199} />
+      <VideoBackground src="/space-background.mp4" startTime={0} />
       
       {/* Audio Toggle Button */}
       {hasEntered && (
@@ -39,8 +55,21 @@ export default function Home() {
       
       {/* Main Content - Cinematic Layout - INSIDE VIDEO */}
       {hasEntered && (
-        <div className="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <div ref={contentRef} className="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
           <div className="relative" style={{ width: '95%', height: '95%' }}>
+            
+            {/* Center - Interstellar Quotes with Typewriter Effect */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4 gap-2">
+              <CinematicText text="Don't let me leave, Murph!" delay={2.5} size="large" />
+              <CinematicText text="Don't let me leave, Murph!" delay={6.5} size="large" />
+              <CinematicText text="[SOBBING]" delay={6.5} size="small" style="italic" />
+              {/* Each "No!" separately */}
+              <CinematicText text="No!" delay={10.5} size="large" style="bold" />
+              <CinematicText text="No!" delay={11.5} size="large" style="bold" />
+              <CinematicText text="No!" delay={12.5} size="large" style="bold" />
+              <CinematicText text="It was you." delay={33.5} size="large" />
+              <CinematicText text="You were my ghost." delay={46.5} size="medium" />
+            </div>
             
             {/* Top Center - Name */}
             <div 
