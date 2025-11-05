@@ -13,6 +13,7 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
     right: 'rgba(0, 0, 0, 0)',
     top: 'rgba(0, 0, 0, 0)',
     bottom: 'rgba(0, 0, 0, 0)',
+    background: 'rgba(0, 0, 0, 1)',
   });
 
   useEffect(() => {
@@ -59,11 +60,16 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
         const bottomData = ctx.getImageData(canvas.width / 2 - 30, canvas.height - edgeSize, 60, edgeSize);
         const bottomColor = getAverageColor(bottomData.data);
 
+        // Center area for overall background color
+        const centerData = ctx.getImageData(canvas.width / 4, canvas.height / 4, canvas.width / 2, canvas.height / 2);
+        const bgColor = getAverageColor(centerData.data, true);
+
         setColors({
           left: leftColor,
           right: rightColor,
           top: topColor,
           bottom: bottomColor,
+          background: bgColor,
         });
       } catch (err) {
         // Video might not be ready yet
@@ -102,7 +108,7 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
   }, [videoRef]);
 
   // Calculate average color from pixel data
-  const getAverageColor = (data: Uint8ClampedArray): string => {
+  const getAverageColor = (data: Uint8ClampedArray, isBackground = false): string => {
     let r = 0, g = 0, b = 0, count = 0;
 
     // Sample every 2nd pixel for smoother results
@@ -117,7 +123,16 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
     g = Math.floor(g / count);
     b = Math.floor(b / count);
 
-    // Boost saturation slightly for more vibrant effect
+    // For background: darker and less saturated
+    if (isBackground) {
+      const darken = 0.3; // Make it much darker
+      r = Math.floor(r * darken);
+      g = Math.floor(g * darken);
+      b = Math.floor(b * darken);
+      return `rgba(${r}, ${g}, ${b}, 1)`;
+    }
+
+    // For edges: boost saturation slightly for more vibrant effect
     const max = Math.max(r, g, b);
     const boost = 1.1;
     if (max > 0) {
@@ -133,6 +148,15 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
     <>
       {/* Hidden canvas for color sampling */}
       <canvas ref={canvasRef} style={{ display: 'none' }} />
+      
+      {/* Ambient Background Color */}
+      <div 
+        className="fixed inset-0 pointer-events-none transition-all duration-700 ease-out"
+        style={{ 
+          background: colors.background,
+          zIndex: -20,
+        }}
+      />
       
       {/* Ambilight glow effects */}
       <div className="fixed inset-0 pointer-events-none z-0">
