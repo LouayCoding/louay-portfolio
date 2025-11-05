@@ -37,7 +37,7 @@ export default function EnterScreen({ onEnter }: EnterScreenProps) {
       transition={{ duration: 1 }}
       className="fixed inset-0 z-[100] flex flex-col items-center justify-center"
       style={{
-        background: 'radial-gradient(circle at center, #ffffff 0%, #f5f5f5 100%)',
+        background: 'radial-gradient(circle at center, #0a0a0a 0%, #000000 100%)',
       }}
     >
       {/* Content */}
@@ -51,7 +51,7 @@ export default function EnterScreen({ onEnter }: EnterScreenProps) {
           style={{
             fontFamily: 'var(--font-sofia-pro)',
             fontWeight: 700,
-            color: '#000000',
+            color: '#ffffff',
             letterSpacing: '0.1em',
           }}
         >
@@ -63,7 +63,7 @@ export default function EnterScreen({ onEnter }: EnterScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="text-xl md:text-2xl text-gray-600 mb-12"
+          className="text-xl md:text-2xl text-gray-400 mb-12"
           style={{ fontFamily: 'var(--font-sofia-pro)', fontWeight: 300 }}
         >
           Welcome to the universe
@@ -79,8 +79,8 @@ export default function EnterScreen({ onEnter }: EnterScreenProps) {
           onClick={onEnter}
           className="px-12 py-5 rounded-full text-lg font-medium transition-all duration-300"
           style={{
-            border: '2px solid rgba(0, 0, 0, 0.3)',
-            color: '#000000',
+            border: '2px solid rgba(255, 255, 255, 0.5)',
+            color: '#ffffff',
             fontFamily: 'var(--font-sofia-pro)',
             fontWeight: 500,
           }}
@@ -93,7 +93,7 @@ export default function EnterScreen({ onEnter }: EnterScreenProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 0.8 }}
-          className="text-sm text-gray-400 mt-8"
+          className="text-sm text-gray-600 mt-8"
           style={{ fontFamily: 'var(--font-sofia-pro)', fontWeight: 300 }}
         >
           Click to experience with sound
@@ -105,14 +105,14 @@ export default function EnterScreen({ onEnter }: EnterScreenProps) {
         {stars.map((star, i) => (
           <motion.div
             key={i}
-            className="absolute w-1 h-1 bg-gray-300 rounded-full"
+            className="absolute w-1 h-1 bg-white rounded-full"
             style={{
               left: `${star.left}%`,
               top: `${star.top}%`,
               opacity: star.opacity,
             }}
             animate={{
-              opacity: [0.2, 0.6, 0.2],
+              opacity: [0.2, 1, 0.2],
               scale: [0.5, 1.5, 0.5],
             }}
             transition={{

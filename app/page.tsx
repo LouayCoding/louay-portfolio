@@ -66,7 +66,7 @@ export default function Home() {
             style={{
               fontFamily: 'var(--font-sofia-pro)',
               fontWeight: 700,
-              color: '#000000',
+              color: '#ffffff',
               letterSpacing: '0.12em',
             }}
           >
