@@ -27,36 +27,36 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
     let frameCount = 0;
 
     const extractColors = () => {
-      // Only sample every 3rd frame for better performance
+      // Only sample every 2nd frame for better performance
       frameCount++;
-      if (frameCount % 3 !== 0) {
+      if (frameCount % 2 !== 0) {
         animationFrameId = requestAnimationFrame(extractColors);
         return;
       }
 
       try {
-        // Draw current video frame to canvas (small size for performance)
-        canvas.width = 160;
-        canvas.height = 90;
+        // Draw current video frame to canvas (higher resolution for better quality)
+        canvas.width = 320;
+        canvas.height = 180;
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-        // Sample edge regions
-        const edgeSize = 20; // pixels to sample from each edge
+        // Sample edge regions (larger sample area for smoother colors)
+        const edgeSize = 40; // pixels to sample from each edge
 
-        // Left edge
-        const leftData = ctx.getImageData(0, canvas.height / 2 - 10, edgeSize, 20);
+        // Left edge (larger sample area)
+        const leftData = ctx.getImageData(0, canvas.height / 2 - 30, edgeSize, 60);
         const leftColor = getAverageColor(leftData.data);
 
-        // Right edge
-        const rightData = ctx.getImageData(canvas.width - edgeSize, canvas.height / 2 - 10, edgeSize, 20);
+        // Right edge (larger sample area)
+        const rightData = ctx.getImageData(canvas.width - edgeSize, canvas.height / 2 - 30, edgeSize, 60);
         const rightColor = getAverageColor(rightData.data);
 
-        // Top edge
-        const topData = ctx.getImageData(canvas.width / 2 - 10, 0, 20, edgeSize);
+        // Top edge (larger sample area)
+        const topData = ctx.getImageData(canvas.width / 2 - 30, 0, 60, edgeSize);
         const topColor = getAverageColor(topData.data);
 
-        // Bottom edge
-        const bottomData = ctx.getImageData(canvas.width / 2 - 10, canvas.height - edgeSize, 20, edgeSize);
+        // Bottom edge (larger sample area)
+        const bottomData = ctx.getImageData(canvas.width / 2 - 30, canvas.height - edgeSize, 60, edgeSize);
         const bottomColor = getAverageColor(bottomData.data);
 
         setColors({
@@ -105,8 +105,8 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
   const getAverageColor = (data: Uint8ClampedArray): string => {
     let r = 0, g = 0, b = 0, count = 0;
 
-    // Sample every 4th pixel for performance
-    for (let i = 0; i < data.length; i += 16) {
+    // Sample every 2nd pixel for smoother results
+    for (let i = 0; i < data.length; i += 8) {
       r += data[i];
       g += data[i + 1];
       b += data[i + 2];
@@ -119,14 +119,14 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
 
     // Boost saturation slightly for more vibrant effect
     const max = Math.max(r, g, b);
-    const boost = 1.3;
+    const boost = 1.2;
     if (max > 0) {
       r = Math.min(255, Math.floor(r * boost));
       g = Math.min(255, Math.floor(g * boost));
       b = Math.min(255, Math.floor(b * boost));
     }
 
-    return `rgba(${r}, ${g}, ${b}, 0.6)`;
+    return `rgba(${r}, ${g}, ${b}, 0.7)`;
   };
 
   return (
@@ -138,37 +138,41 @@ export default function AmbilightEffect({ videoRef }: AmbilightEffectProps) {
       <div className="fixed inset-0 pointer-events-none z-0">
         {/* Left glow */}
         <div
-          className="absolute left-0 top-0 bottom-0 w-32 md:w-48 blur-3xl transition-all duration-300"
+          className="absolute left-0 top-0 bottom-0 w-48 md:w-64 transition-all duration-500 ease-out"
           style={{
             background: `linear-gradient(to right, ${colors.left}, transparent)`,
-            opacity: 0.8,
+            opacity: 0.9,
+            filter: 'blur(80px)',
           }}
         />
         
         {/* Right glow */}
         <div
-          className="absolute right-0 top-0 bottom-0 w-32 md:w-48 blur-3xl transition-all duration-300"
+          className="absolute right-0 top-0 bottom-0 w-48 md:w-64 transition-all duration-500 ease-out"
           style={{
             background: `linear-gradient(to left, ${colors.right}, transparent)`,
-            opacity: 0.8,
+            opacity: 0.9,
+            filter: 'blur(80px)',
           }}
         />
         
         {/* Top glow */}
         <div
-          className="absolute top-0 left-0 right-0 h-24 md:h-32 blur-3xl transition-all duration-300"
+          className="absolute top-0 left-0 right-0 h-32 md:h-40 transition-all duration-500 ease-out"
           style={{
             background: `linear-gradient(to bottom, ${colors.top}, transparent)`,
-            opacity: 0.8,
+            opacity: 0.9,
+            filter: 'blur(80px)',
           }}
         />
         
         {/* Bottom glow */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-24 md:h-32 blur-3xl transition-all duration-300"
+          className="absolute bottom-0 left-0 right-0 h-32 md:h-40 transition-all duration-500 ease-out"
           style={{
             background: `linear-gradient(to top, ${colors.bottom}, transparent)`,
-            opacity: 0.8,
+            opacity: 0.9,
+            filter: 'blur(80px)',
           }}
         />
       </div>

@@ -69,8 +69,8 @@ export default function VideoBackground({ src, startTime = 0 }: VideoBackgroundP
         ref={containerRef}
         className="relative"
         style={{
-          width: '95%',
-          height: '95%',
+          width: '75%',
+          height: '75%',
         }}
       >
         <video

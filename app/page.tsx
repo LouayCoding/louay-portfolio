@@ -84,7 +84,7 @@ export default function Home() {
       {/* Main Content - Cinematic Layout - INSIDE VIDEO */}
       {hasEntered && (
         <div ref={contentRef} className="fixed inset-0 flex items-center justify-center z-10 pointer-events-none">
-          <div className="relative" style={{ width: '95%', height: '95%' }}>
+          <div className="relative" style={{ width: '75%', height: '75%' }}>
             
             {/* Center - Interstellar Quotes with Typewriter Effect */}
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none px-4 gap-2">
