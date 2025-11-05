@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# LOUAY - The Digital Universe 🌌
 
-## Getting Started
+A cinematic portfolio website with Interstellar-inspired aesthetics, featuring 3D starfield, animated text sequences, and orbital navigation.
 
-First, run the development server:
+## ✨ Features
+
+- **Full-screen cinematic experience** - No scrolling, pure timeline-based animations
+- **3D Starfield** - Interactive particle system using React Three Fiber
+- **GSAP Timeline Animations** - Smooth, cinematic text sequences
+- **Orbital Navigation** - Rotating icon satellites with hover effects
+- **Modal System** - Seamless project and contact overlays
+- **Ambient Audio** - Optional background music with mute control
+- **Fully Responsive** - Optimized for desktop and mobile devices
+
+## 🚀 Tech Stack
+
+- **Framework**: Next.js 14 (App Router) + TypeScript
+- **Animations**: GSAP + Framer Motion
+- **3D Graphics**: React Three Fiber + Three.js + Drei
+- **Styling**: Tailwind CSS
+- **Fonts**: Space Grotesk & Orbitron
+
+## 📦 Installation
+
+```bash
+npm install
+```
+
+## 🎮 Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) to see the magic.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🎨 Customization
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Update Personal Links
 
-## Learn More
+Edit `components/OrbitLinks.tsx` to change the navigation links:
 
-To learn more about Next.js, take a look at the following resources:
+```typescript
+const links: Link[] = [
+  {
+    id: 'github',
+    label: 'GitHub',
+    icon: '⚙️',
+    subtitle: 'Where logic lives',
+    href: 'https://github.com/yourusername',
+    color: '#0bf49a',
+  },
+  // Add more links...
+];
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Modify Philosophical Texts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Update the text sequences in `components/TextSequence.tsx`:
 
-## Deploy on Vercel
+```typescript
+<p className="text-xl text-gray-400">
+  Your custom philosophical text here...
+</p>
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Change Color Scheme
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Adjust colors in `app/globals.css`:
+
+```css
+:root {
+  --glow-primary: #0bf49a; /* Turquoise */
+  --glow-secondary: #808080; /* Gray */
+}
+```
+
+### Add Ambient Audio
+
+Place your audio file in the `public/` directory as `ambient.mp3` and it will automatically play (with user interaction).
+
+### Projects Content
+
+Edit `components/Portal.tsx` to customize your projects:
+
+```typescript
+const projects = [
+  {
+    title: 'Your Project',
+    description: 'Project description',
+    tech: ['React', 'TypeScript'],
+  },
+];
+```
+
+### Contact Information
+
+Update contact details in the `ContactContent` function in `components/Portal.tsx`.
+
+## 🎯 Performance Optimizations
+
+- **Dynamic imports** for Three.js (no SSR)
+- **Optimized particle count** for mobile devices
+- **Reduced animation complexity** on smaller screens
+- **Lazy loading** of components
+- **GPU-accelerated animations** with CSS transforms
+
+## 📱 Mobile Support
+
+The site automatically adapts for mobile devices:
+- Reduced particle count in starfield
+- Simplified animations
+- Touch-optimized controls
+- Responsive text sizing
+
+## 🏗️ Project Structure
+
+```
+├── app/
+│   ├── page.tsx          # Main orchestration
+│   ├── layout.tsx        # Root layout with fonts
+│   └── globals.css       # Global styles & animations
+├── components/
+│   ├── Scene.tsx         # 3D starfield
+│   ├── TextSequence.tsx  # Cinematic text animations
+│   ├── OrbitLinks.tsx    # Rotating navigation
+│   ├── AudioControl.tsx  # Audio toggle
+│   ├── Portal.tsx        # Modal system
+│   └── LoadingScreen.tsx # Initial loading
+└── public/
+    └── ambient.mp3       # Background audio (optional)
+```
+
+## 🎭 Scene Flow
+
+1. **Loading Screen** - Initial loading with progress bar
+2. **Scene 1 - Awakening** - Fade-in starfield with intro text
+3. **Scene 2 - Identity** - Name appears with philosophical context
+4. **Scene 3 - Monologue** - Core philosophical statements
+5. **Scene 4 - Portal** - Name reveal with orbital links
+6. **Idle Loop** - Continuous subtle motion
+
+## 🛠️ Build for Production
+
+```bash
+npm run build
+npm start
+```
+
+## 📄 License
+
+MIT License - Feel free to use this for your own portfolio!
+
+## 🌟 Credits
+
+Inspired by:
+- Interstellar (Christopher Nolan)
+- Cosmos (Carl Sagan)
+- The intersection of logic and creativity
+
+---
+
+**Built with ❤️ and logic by LOUAY**
